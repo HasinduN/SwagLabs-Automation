@@ -28,23 +28,20 @@ public class LoginTest {
         driver.manage().window().maximize();
         Thread.sleep(3000);
 
-        //System.out.println("Running scenario: " + scenario + " with username: " + un + " and password: " + pw);
+        System.out.println("Running scenario: " + scenario + " with username: " + un + " and password: " + pw);
 
         driver.get("https://www.saucedemo.com/");
-        Thread.sleep(3000);
 
         LoginObjects page = new LoginObjects(driver);
 
         page.setUsername(un);
-        Thread.sleep(3000);
 
         page.setPassword(pw);
-        Thread.sleep(3000);
 
         page.click_LoginBtn();
         Thread.sleep(3000);
 
-        if (scenario.equals("bothCorrect")) {
+        if (scenario.equals("Both username and password correct")) {
             Assert.assertTrue(page.isLoggedIn(), "Login failed for valid credentials");
             System.out.println("Login successful for scenario: " + scenario);
         } else {
@@ -59,10 +56,10 @@ public class LoginTest {
     @DataProvider(name = "cred")
     public Object[][] getData() {
         return new Object[][] {
-                {"Both username & password correct", "standard_user", "secret_sauce"},
+                {"Both username and password correct", "standard_user", "secret_sauce"},
                 {"Only username is correct", "standard_user", "HAsindu"},
                 {"Only password is correct", "Nana5689", "secret_sauce"},
-                {"Both username & password wrong", "standard", "secret"},
+                {"Both username and password wrong", "standard", "secret"}
         };
     }
 }

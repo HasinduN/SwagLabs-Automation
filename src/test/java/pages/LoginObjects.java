@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.*;
+import java.time.Duration;
 
 public class LoginObjects {
     WebDriver driver = null;
@@ -18,10 +20,20 @@ public class LoginObjects {
     }
 
     public void setUsername(String text) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(username));
         driver.findElement(username).sendKeys(text);
     }
-    public void setPassword(String text){driver.findElement(password).sendKeys(text);}
-    public void click_LoginBtn(){driver.findElement(btn_login).click();}
+    public void setPassword(String text){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(password));
+        driver.findElement(password).sendKeys(text);
+    }
+    public void click_LoginBtn(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(btn_login));
+        driver.findElement(btn_login).click();
+    }
 
     public boolean isLoggedIn() {
         try{
